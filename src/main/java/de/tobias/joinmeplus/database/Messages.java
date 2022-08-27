@@ -1,4 +1,4 @@
-package de.tobias.joinme.database;
+package de.tobias.joinmeplus.database;
 
 public class Messages {
 

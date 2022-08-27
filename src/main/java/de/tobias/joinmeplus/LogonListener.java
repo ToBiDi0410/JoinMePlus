@@ -1,9 +1,9 @@
-package de.tobias.joinme;
+package de.tobias.joinmeplus;
 
-import de.tobias.joinme.database.Database;
-import de.tobias.joinme.database.Messages;
-import de.tobias.joinme.database.OwnableUserList;
-import de.tobias.joinme.database.UserSettings;
+import de.tobias.joinmeplus.database.Database;
+import de.tobias.joinmeplus.database.Messages;
+import de.tobias.joinmeplus.database.OwnableUserList;
+import de.tobias.joinmeplus.database.UserSettings;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;

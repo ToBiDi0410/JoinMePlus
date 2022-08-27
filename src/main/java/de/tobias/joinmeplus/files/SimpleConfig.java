@@ -1,6 +1,6 @@
-package de.tobias.joinme.files;
+package de.tobias.joinmeplus.files;
 
-import de.tobias.joinme.Logger;
+import de.tobias.joinmeplus.Logger;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;

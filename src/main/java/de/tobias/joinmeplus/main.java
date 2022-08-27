@@ -1,8 +1,8 @@
-package de.tobias.joinme;
+package de.tobias.joinmeplus;
 
-import de.tobias.joinme.database.Database;
-import de.tobias.joinme.files.DatabaseConfig;
-import de.tobias.joinme.files.MessagesSerializer;
+import de.tobias.joinmeplus.database.Database;
+import de.tobias.joinmeplus.files.DatabaseConfig;
+import de.tobias.joinmeplus.files.MessagesSerializer;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 

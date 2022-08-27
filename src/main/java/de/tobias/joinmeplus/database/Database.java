@@ -1,8 +1,8 @@
-package de.tobias.joinme.database;
+package de.tobias.joinmeplus.database;
 
-import de.tobias.joinme.Logger;
-import de.tobias.joinme.Utils;
-import de.tobias.joinme.main;
+import de.tobias.joinmeplus.Logger;
+import de.tobias.joinmeplus.Utils;
+import de.tobias.joinmeplus.main;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.io.File;

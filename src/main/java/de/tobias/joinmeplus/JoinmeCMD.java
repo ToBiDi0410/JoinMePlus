@@ -1,6 +1,6 @@
-package de.tobias.joinme;
+package de.tobias.joinmeplus;
 
-import de.tobias.joinme.database.*;
+import de.tobias.joinmeplus.database.*;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;

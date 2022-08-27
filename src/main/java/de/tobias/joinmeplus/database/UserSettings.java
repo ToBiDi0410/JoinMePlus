@@ -1,6 +1,6 @@
-package de.tobias.joinme.database;
+package de.tobias.joinmeplus.database;
 
-import de.tobias.joinme.main;
+import de.tobias.joinmeplus.main;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
