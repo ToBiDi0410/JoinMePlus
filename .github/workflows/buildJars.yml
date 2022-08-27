@@ -31,6 +31,6 @@ jobs:
     - name: 'Upload Production Artifact'
       uses: actions/upload-artifact@v2
       with:
-        name: JARs
+        name: Production JAR
         path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
         retention-days: 7
