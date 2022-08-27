@@ -21,9 +21,16 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: 'Upload Artifact'
+    - name: 'Upload Artifacts'
       uses: actions/upload-artifact@v2
       with:
         name: JARs
         path: /home/runner/work/JoinMePlus/JoinMePlus/target/*.jar
+        retention-days: 7
+        
+    - name: 'Upload Production Artifact'
+      uses: actions/upload-artifact@v2
+      with:
+        name: JARs
+        path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
         retention-days: 7
