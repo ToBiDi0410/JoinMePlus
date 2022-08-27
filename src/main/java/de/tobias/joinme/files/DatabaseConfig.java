@@ -20,9 +20,9 @@ public class DatabaseConfig {
         defaultValues.put("USE_MYSQL", "false");
         defaultValues.put("HOST", "192.168.178.2");
         defaultValues.put("PORT", "3306");
-        defaultValues.put("USERNAME", "bungeesystem");
+        defaultValues.put("USERNAME", "joinmeplus");
         defaultValues.put("PASSWORD", "why_1s_this_s0_fr1ck1ng_secure");
-        defaultValues.put("DATABASE", "bungeesystem");
+        defaultValues.put("DATABASE", "joinmeplus");
 
         Logger.info("Loading mysql.yml ...");
         if(!configFile.getParentFile().exists()) configFile.getParentFile().mkdirs();
