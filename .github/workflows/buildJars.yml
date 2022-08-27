@@ -25,5 +25,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: JARs
-        path: /home/runner/work/JoinMePlus/joinmeplus/target/*.jar
+        path: /home/runner/work/JoinMePlus/JoinMePlus/target/*.jar
         retention-days: 7
