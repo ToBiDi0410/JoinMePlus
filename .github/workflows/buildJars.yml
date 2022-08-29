@@ -43,9 +43,14 @@ jobs:
         path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
         retention-days: 7
 
+    - uses: actions/checkout@v2
+      with:
+        ref: build
+
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Update newest build
         branch: build
         commit_options: '--no-verify --signoff'
         create_branch: true
+        token: ${{ secrets.SECRET_KEY }}
