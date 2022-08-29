@@ -19,7 +19,7 @@ public class AutoUpdater {
     public static String PREFIX = main.loggerPrefix.replace("%ADDITION%", "") + "§7[§aAutoUpdater§7] §7";
     public static Plugin pl = main.pl;
     public static String FILE_URL = "https://github.com/ToBiDi0410/JoinMePlus/raw/build/target/joinmeplus-1.0-jar-with-dependencies.jar";
-    public static String YML_URL = "https://github.com/ToBiDi0410/JoinMePlus/blob/build/src/main/resources/bungee.yml";
+    public static String YML_URL = "https://raw.githubusercontent.com/ToBiDi0410/JoinMePlus/build/src/main/resources/bungee.yml";
     public static File updaterDir = new File(pl.getDataFolder(), "updater");
     public static String getCurrentVersion() {
         try {
