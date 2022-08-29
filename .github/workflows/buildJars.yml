@@ -1,5 +1,9 @@
 name: Build JARs
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -34,3 +38,12 @@ jobs:
         name: Production JAR
         path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
         retention-days: 7
+
+    - name: Push
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        BRANCH: build # The branch name where you want to push the assets
+        FOLDER: /home/runner/work/JoinMePlus/JoinMePlus/target/ # The directory where your assets are generated
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+        MESSAGE: "Build: ({sha}) {msg}" # The commit message
