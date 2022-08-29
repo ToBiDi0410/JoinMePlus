@@ -36,6 +36,7 @@ public class main extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinmeCMD("joinme"));
         ProxyServer.getInstance().getPluginManager().registerListener(this, new LogonListener());
         Logger.info("§aPlugin has been loaded!");
+        AutoUpdater.checkForUpdateAndUpdate();
     }
 
     @Override

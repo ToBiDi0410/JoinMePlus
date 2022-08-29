@@ -1,7 +1,7 @@
 name: JoinMePlus
 author: Tobias
-version: 1.0
-main: de.tobias.joinme.main
+version: 1.1
+main: de.tobias.joinmeplus.main
 website: https://tobias.minetimes.de/info
 commands:
   joinme:
