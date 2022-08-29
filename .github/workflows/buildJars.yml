@@ -40,8 +40,12 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Production JAR
-        path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
         retention-days: 7
+
+    - name: Remove File
+      uses: JesseTG/rm@v1.0.3
+      with:
+        path: /home/runner/work/JoinMePlus/JoinMePlus/.gitignore
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
