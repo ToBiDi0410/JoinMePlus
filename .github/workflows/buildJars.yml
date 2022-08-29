@@ -1,15 +1,23 @@
 name: Build JARs
-on: [push, workflow_dispatch]
+
+on:
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
@@ -27,10 +35,12 @@ jobs:
         name: JARs
         path: /home/runner/work/JoinMePlus/JoinMePlus/target/*.jar
         retention-days: 7
-        
-    - name: 'Upload Production Artifact'
-      uses: actions/upload-artifact@v2
+
+    - name: Remove File
+      uses: JesseTG/rm@v1.0.3
       with:
-        name: Production JAR
-        path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
-        retention-days: 7
+        path: /home/runner/work/JoinMePlus/JoinMePlus/.gitignore
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        branch: build
