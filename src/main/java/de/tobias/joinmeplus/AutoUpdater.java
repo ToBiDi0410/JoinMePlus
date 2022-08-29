@@ -55,8 +55,8 @@ public class AutoUpdater {
 
         ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§7Searching updates...");
         ModuleDescriptor.Version latest = ModuleDescriptor.Version.parse(getCurrentVersion().trim());
-        ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§7Latest version is §b" + latest.toString());
         ModuleDescriptor.Version installed = ModuleDescriptor.Version.parse(pl.getDescription().getVersion());
+        ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§7Latest version is §b" + latest.toString() + " §7(current: §6" + installed.toString() + "§7)");
 
         if(latest.compareTo(installed) == 1) {
             ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§7Performing upgrade §7(§c" + installed + " §7--> §a" + latest.toString() + "§7)...");
