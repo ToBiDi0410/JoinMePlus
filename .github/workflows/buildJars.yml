@@ -35,12 +35,6 @@ jobs:
         name: JARs
         path: /home/runner/work/JoinMePlus/JoinMePlus/target/*.jar
         retention-days: 7
-        
-    - name: 'Upload Production Artifact'
-      uses: actions/upload-artifact@v2
-      with:
-        name: Production JAR
-        retention-days: 7
 
     - name: Remove File
       uses: JesseTG/rm@v1.0.3
@@ -50,4 +44,3 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         branch: build
-        file_pattern: /home/runner/work/JoinMePlus/JoinMePlus/target/*.jar
