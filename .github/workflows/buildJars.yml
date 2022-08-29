@@ -1,4 +1,5 @@
 name: Build JARs
+
 on:
   push:
     branches:
@@ -9,13 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
     - uses: actions/checkout@v2
       with:
-        path: "master"
         token: ${{ secrets.SECRET_KEY }}
         
     - name: Set up JDK 11
@@ -27,20 +27,22 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven
-      run: mvn -B package --file master/pom.xml
+      run: mvn -B package --file pom.xml
 
     - name: 'Upload Artifacts'
       uses: actions/upload-artifact@v2
       with:
         name: JARs
-        path: /home/runner/work/JoinMePlus/master/JoinMePlus/target/*.jar
+        path: /home/runner/work/JoinMePlus/JoinMePlus/target/*.jar
         retention-days: 7
         
     - name: 'Upload Production Artifact'
       uses: actions/upload-artifact@v2
       with:
         name: Production JAR
-        path: /home/runner/work/JoinMePlus/master/JoinMePlus/target/*-jar-with-dependencies.jar
+        path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
         retention-days: 7
 
     - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        branch: build
