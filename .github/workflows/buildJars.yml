@@ -39,11 +39,9 @@ jobs:
         path: /home/runner/work/JoinMePlus/JoinMePlus/target/*-jar-with-dependencies.jar
         retention-days: 7
 
-    - name: Push
-      uses: s0/git-publish-subdir-action@develop
-      env:
-        REPO: self
-        BRANCH: build # The branch name where you want to push the assets
-        FOLDER: /home/runner/work/JoinMePlus/JoinMePlus/target/ # The directory where your assets are generated
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-        MESSAGE: "Build: ({sha}) {msg}" # The commit message
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update newest build
+        branch: build
+        commit_options: '--no-verify --signoff'
+        create_branch: true
