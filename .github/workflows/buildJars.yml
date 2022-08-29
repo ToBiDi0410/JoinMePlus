@@ -46,3 +46,4 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         branch: build
+        file_pattern: /home/runner/work/JoinMePlus/JoinMePlus/target/*.jar
