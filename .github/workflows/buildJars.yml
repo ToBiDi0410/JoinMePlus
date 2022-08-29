@@ -52,4 +52,3 @@ jobs:
         branch: build
         commit_options: '--no-verify --signoff'
         create_branch: true
-        token: ${{ secrets.SECRET_KEY }}
