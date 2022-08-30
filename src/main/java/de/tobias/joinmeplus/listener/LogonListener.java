@@ -1,7 +1,8 @@
-package de.tobias.joinmeplus;
+package de.tobias.joinmeplus.listener;
 
+import de.tobias.joinmeplus.Utils;
 import de.tobias.joinmeplus.database.Database;
-import de.tobias.joinmeplus.database.Messages;
+import de.tobias.joinmeplus.files.MessagesConfig;
 import de.tobias.joinmeplus.database.OwnableUserList;
 import de.tobias.joinmeplus.database.UserSettings;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -21,12 +22,12 @@ public class LogonListener implements Listener {
 
         UserSettings settings = new UserSettings(p.getUniqueId());
         if(settings.load() == null) {
-            Utils.sendMessage(p, Messages.chatPrefix + "Preparing your Database...");
+            Utils.sendMessage(p, MessagesConfig.chatPrefix + "Preparing your Database...");
             settings.listEnabled = false;
             settings.selectedList = UUID.randomUUID().toString();
             settings.notificationsEnabled = true;
             if(!settings.save()) {
-                Utils.sendMessage(p, Messages.chatPrefix + "§cSomething went wrong (FAILED_SETTINGS_SAVE)");
+                Utils.sendMessage(p, MessagesConfig.chatPrefix + "§cSomething went wrong (FAILED_SETTINGS_SAVE)");
                 return;
             }
 
@@ -35,11 +36,11 @@ public class LogonListener implements Listener {
             list.name = "default";
             list.members = new ArrayList<>();
             if(!list.save()) {
-                Utils.sendMessage(p, Messages.chatPrefix + "§cSomething went wrong (FAILED_LIST_SAVE)");
+                Utils.sendMessage(p, MessagesConfig.chatPrefix + "§cSomething went wrong (FAILED_LIST_SAVE)");
                 return;
             }
 
-            Utils.sendMessage(p, Messages.chatPrefix + "Your Database is now ready!");
+            Utils.sendMessage(p, MessagesConfig.chatPrefix + "Your Database is now ready!");
         }
     }
 }

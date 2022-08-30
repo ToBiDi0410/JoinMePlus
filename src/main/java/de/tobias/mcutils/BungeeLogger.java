@@ -1,9 +1,10 @@
-package de.tobias.joinmeplus;
+package de.tobias.mcutils;
 
+import de.tobias.joinmeplus.main;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 
-public class Logger {
+public class BungeeLogger {
 
     public static String loggerPrefix = main.loggerPrefix;
     public static Boolean shouldDebug = false;

@@ -1,6 +1,6 @@
 package de.tobias.joinmeplus.database;
 
-import de.tobias.joinmeplus.Logger;
+import de.tobias.mcutils.BungeeLogger;
 import de.tobias.joinmeplus.Utils;
 import de.tobias.joinmeplus.main;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -40,26 +40,29 @@ public class Database {
         this.dbFile = f;
     }
 
-    public void connect() {
-        Logger.info("Connecting to database...");
+    public boolean connect() {
+        BungeeLogger.info("Connecting to database...");
         try {
             if(!isMySQL) {
                 if(!dbFile.getParentFile().exists()) {
                     dbFile.getParentFile().mkdirs();
-                    Logger.warn("Created empty Plugin directory!");
+                    BungeeLogger.warn("Created empty Plugin directory!");
                 }
                 Class.forName("org.sqlite.JDBC");
                 String url = "jdbc:sqlite:" + dbFile.getPath();
                 conn = DriverManager.getConnection(url);
-                Logger.info("Now connected to SQLite database at: " + dbFile.getAbsolutePath());
+                BungeeLogger.info("Now connected to SQLite database at: " + dbFile.getAbsolutePath());
+                return true;
             } else {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://" + MYSQL_HOST + "/" + MYSQL_DB + "?" + "user=" + MYSQL_USERNAME + "&password=" + MYSQL_PASSWORD);
-                Logger.info("Now connected to MySQL at: " + MYSQL_HOST);
+                BungeeLogger.info("Now connected to MySQL at: " + MYSQL_HOST);
+                return true;
             }
         } catch (Exception ex) {
-            Logger.error("Failed to connect to database: ");
+            BungeeLogger.error("Failed to connect to database: ");
             ex.printStackTrace();
+            return false;
         }
 
     }
@@ -67,12 +70,12 @@ public class Database {
     public void disconnect() {
         try {
             if(conn != null && !conn.isClosed()) {
-                Logger.info("Disconnecting from database...");
+                BungeeLogger.info("Disconnecting from database...");
                 conn.close();
-                Logger.info("Database is now closed");
+                BungeeLogger.info("Database is now closed");
             }
         } catch (Exception ex) {
-            Logger.error("Failed to disconnect from database: ");
+            BungeeLogger.error("Failed to disconnect from database: ");
             ex.printStackTrace();
         }
     }
@@ -81,7 +84,7 @@ public class Database {
         execute("CREATE TABLE IF NOT EXISTS `userSettings` (`UUID` TEXT NOT NULL , `listEnabled` BOOLEAN NOT NULL , `notifications` BOOLEAN NOT NULL , `selectedList` TEXT NOT NULL )");
         execute("CREATE TABLE IF NOT EXISTS `lists` (`ID` TEXT NOT NULL, `NAME` TEXT NOT NULL, `OWNER` TEXT NOT NULL , `USERS` TEXT NOT NULL )");
         execute("CREATE TABLE IF NOT EXISTS `userlog` (`UUID` TEXT NOT NULL, `NAME` TEXT NOT NULL, `JOINED` BIGINT NOT NULL )");
-        Logger.info("Database tables are now ready");
+        BungeeLogger.info("Database tables are now ready");
     }
 
     public String format(String sql) {
@@ -94,13 +97,13 @@ public class Database {
     }
     public boolean execute(String sql) {
         sql = format(sql);
-        Logger.debug(sql);
+        BungeeLogger.debug(sql);
         try {
             PreparedStatement exec = conn.prepareStatement(sql);
             exec.execute();
             return true;
         } catch (Exception ex) {
-            Logger.error("Failed database execute: ");
+            BungeeLogger.error("Failed database execute: ");
             ex.printStackTrace();
             return false;
         }
@@ -108,12 +111,12 @@ public class Database {
 
     public ResultSet query(String sql) {
         sql = format(sql);
-        Logger.debug(sql);
+        BungeeLogger.debug(sql);
         try {
             PreparedStatement exec = conn.prepareStatement(sql);
             return exec.executeQuery();
         } catch (Exception ex) {
-            Logger.error("Failed database query: ");
+            BungeeLogger.error("Failed database query: ");
             ex.printStackTrace();
             return null;
         }
@@ -134,7 +137,7 @@ public class Database {
                 }
             }
         } catch (Exception ex) {
-            Logger.error("Failed to log player:");
+            BungeeLogger.error("Failed to log player:");
             ex.printStackTrace();
         }
     }

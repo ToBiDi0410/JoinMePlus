@@ -1,5 +1,6 @@
-package de.tobias.joinmeplus;
+package de.tobias.mcutils;
 
+import de.tobias.joinmeplus.main;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 

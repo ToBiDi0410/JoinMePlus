@@ -1,6 +1,11 @@
-package de.tobias.joinmeplus.database;
+package de.tobias.joinmeplus.files;
 
-public class Messages {
+import de.tobias.joinmeplus.main;
+import de.tobias.mcutils.StaticClassSerializer;
+
+import java.io.File;
+
+public class MessagesConfig extends StaticClassSerializer {
 
     public static String CMD_NOCONSOLE = "§cThis command is only available for players";
     public static String CMD_NO_PERMISSION = "§cYou are not allowed to do that (%PERM%)";
@@ -33,7 +38,12 @@ public class Messages {
     public static String JOINME_LINEPREFIX = "§8▎ ";
     public static String JOINME_CHARACTER = "█";
     public static String JOINME_CLICK = "§c*CLICK*";
+    public static String CMD_JOINME_NOT_ALLOWED = "§cJoinMe is not allowed on this server";
 
     public static String chatPrefix = "§5§lJoinMe+ §7| ";
     public static String CHAT_SEPERATOR_LINE = "§m--------------§r§7 [LIST] §m--------------";
+
+    public MessagesConfig() {
+        super(MessagesConfig.class, new File(main.pl.getDataFolder(), "messages.yml"));
+    }
 }

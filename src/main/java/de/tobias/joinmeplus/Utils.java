@@ -1,7 +1,10 @@
 package de.tobias.joinmeplus;
 
+import de.tobias.joinmeplus.files.FilterConfig;
+import de.tobias.mcutils.BungeeLogger;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.config.ServerInfo;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -27,6 +30,40 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public static boolean isValidServer(ServerInfo inf) {
+        boolean whitelistedServer = false;
+        boolean blacklistedServer = false;
+        boolean whitelistedMOTD = false;
+        boolean blacklistedMOTD = false;
+
+        for(String s : FilterConfig.whitelistedServers) {
+            if(matchPattern(s, inf.getName())) whitelistedServer = true;
+        }
+
+        for(String s : FilterConfig.blacklistedServers) {
+            if(matchPattern(s, inf.getName())) blacklistedServer = true;
+        }
+
+        for(String s : FilterConfig.whitelistedMOTDs) {
+            if(matchPattern(s, inf.getMotd())) whitelistedMOTD = true;
+        }
+
+        for(String s : FilterConfig.blacklistedMOTDs) {
+            if(matchPattern(s, inf.getMotd())) blacklistedMOTD = true;
+        }
+
+        BungeeLogger.debug(inf.getName() + " --> " + "SW: " + whitelistedServer + "; SB: " + blacklistedServer + "; WM: " + whitelistedMOTD + "; BM: " + blacklistedMOTD);
+        if(!whitelistedServer && !whitelistedMOTD) return false;
+        if(blacklistedServer || blacklistedMOTD) return false;
+        return true;
+    }
+
+    //FROM: https://stackoverflow.com/questions/24337657/wildcard-matching-in-java
+    public static boolean matchPattern(String pattern, String str) {
+        if(pattern.equalsIgnoreCase("*")) return true;
+        return str.toLowerCase().contains(pattern.toLowerCase());
     }
 
     public static void sendMessage(CommandSender p, String msg) {
