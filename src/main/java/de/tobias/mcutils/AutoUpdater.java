@@ -49,7 +49,7 @@ public class AutoUpdater {
         return content.toString();
     }
 
-    public static void checkForUpdateAndUpdate() {
+    public static Boolean checkForUpdateAndUpdate() {
         if(!updaterDir.exists()) updaterDir.mkdirs();
 
         ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§7Searching updates...");
@@ -62,6 +62,7 @@ public class AutoUpdater {
             if(downloadNewJAR()) {
                 if(overwriteOldJAR()) {
                     ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§aPlugin has been updated!");
+                    return true;
                 } else {
                     ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§4Failed to update Plugin");
                 }
@@ -69,6 +70,7 @@ public class AutoUpdater {
                 ProxyServer.getInstance().getConsole().sendMessage(PREFIX + "§4Failed to update Plugin");
             }
         }
+        return false;
     }
 
     public static Boolean downloadNewJAR() {

@@ -23,10 +23,12 @@ public class main extends Plugin {
     public static DatabaseConfig dbCFG;
     public static MessagesConfig messagesCFG;
     public static FilterConfig filterCFG;
+    Metrics metrics;
 
     @Override
     public void onEnable() {
         pl = this;
+        metrics = new Metrics(this, 16312);
         dbCFG = new DatabaseConfig();
         messagesCFG = new MessagesConfig();
         filterCFG = new FilterConfig();
@@ -37,6 +39,9 @@ public class main extends Plugin {
 
         dbCFG.doAll();
         filterCFG.doAll();
+
+        if(AutoUpdater.checkForUpdateAndUpdate()) return;
+
         if(DatabaseConfig.USE_MYSQL) {
             db = new Database(DatabaseConfig.HOST, DatabaseConfig.PORT.toString(), DatabaseConfig.USERNAME, DatabaseConfig.PASSWORD, DatabaseConfig.DATABASE);
         } else {
@@ -51,7 +56,6 @@ public class main extends Plugin {
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinmeCMD("joinme"));
         ProxyServer.getInstance().getPluginManager().registerListener(this, new LogonListener());
         BungeeLogger.info("§aPlugin has been loaded!");
-        AutoUpdater.checkForUpdateAndUpdate();
     }
 
 
